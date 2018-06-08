@@ -1,7 +1,7 @@
 # This document goes though the syntax and design principles of the Quokka programming language
 
 ## Comments:
-Comments take the form:
+## Comments take the form:
     ~comment~
     ~
     comment 2
