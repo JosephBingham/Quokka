@@ -21,14 +21,16 @@
 ##### What would that even mean?
 
 ### Declarations of these types look like
-    QINT a = (1|.25>, -1|.25>, 0|.5>); ~declartation of a quantum integer variable :: (value1|prob1>, ...)~
+#### Declartation of a quantum integer variable :: (value1|prob1>, ...)
+	QINT a = (1|.25>, -1|.25>, 0|.5>); 
+#### One can leave out last prob since it is implied
+    QINT aa = (1|.25>, -1|.25>, 0|>); 
+#### One can leave out parens and commas, it's not pretty but it's close to what the written form looks like
+    QINT aaa = 1|.25> -1|.25> 0|>; 
 
-    QINT aa = (1|.25>, -1|.25>, 0|>); ~can leave out last prob since it is implied~
-
-    QINT aaa = 1|.25> -1|.25> 0|>; ~can leave out parens and commas, not pretty~
-
-    ~representation { (prob1, value1), (prob1+prob2, value2) ... (sum(prob*), valuen) }~
-
-    QB b = 1|.25>; ~declaration of quantum bit, only need to declare one value~
+#### The internal representation looks like 
+	{ (prob1, value1), (prob1+prob2, value2) ... (sum(prob*), valuen) }
+#### declaration of quantum bit, only need to declare one value 
+    QB b = 1|.25>;
 
 
