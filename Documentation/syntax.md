@@ -2,10 +2,10 @@
 
 ## Comments:
 Comments take the form:
-    \~comment\~
-    \~
+    ~comment~
+    ~
     comment 2
-    \~
+    ~
 
 
 ## Types:
