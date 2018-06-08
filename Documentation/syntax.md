@@ -10,13 +10,13 @@
 
 ## Types:
 ### The native types in the Quokka progamming language are 
-#### INT :: integer
-#### B :: bit or bool
-#### FIX :: fixed point value
-#### CHAR :: character
-#### QINT :: quantum INT
-#### QB :: quantum B
-#### QFIX :: quantum FIX
+     INT :: integer
+     B :: bit or bool
+     FIX :: fixed point value
+     CHAR :: character
+     QINT :: quantum INT
+     QB :: quantum B
+     QFIX :: quantum FIX
 #### There is no quantum CHAR
 ##### What would that even mean?
 
