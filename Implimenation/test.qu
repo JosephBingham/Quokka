@@ -1,0 +1,8 @@
+~test file~
+
+INT i;
+FOR i IN 1:100;
+    IF i % 5 .EQ. 0;
+        PRINT i;
+    END;
+END;

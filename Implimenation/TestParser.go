@@ -1,8 +1,9 @@
 package main
 
 import ("fmt"
-	"os"
-	"bufio"
+//	"os"
+//	"bufio"
+	"io/ioutil"
 )
 
 func getClass(char int ) int {
@@ -26,8 +27,10 @@ func getClass(char int ) int {
 			return 7 //Left angled bracket, for quantum types
 		} else if char == 59 {
 			return 8 //Semicolon, end of statement
-		} else if char >= 42 && char <= 47 {
+		} else if char >= 42 && char <= 47 || char == 37{
 			return 9 //Math operators
+		} else if char == 34 {
+			return 10 //Quote			
 		} else if char == 126 {
 			return -2
 		} else {
@@ -38,18 +41,28 @@ func getClass(char int ) int {
 }
 
 
-func main() {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter text: ")
-	text, _ := reader.ReadString('\n')
+func parse(text string) {
 	class := 0
 	token := ""
 	commentFlag := 0
+	quoteFlag := 0
 	for _, char := range text {
 		if getClass(int(char)) == -2 {
 			commentFlag = (commentFlag + 1) % 2
-			fmt.Println(commentFlag)
 			continue				
+		}
+		if getClass(int(char)) == 10 {
+			if quoteFlag == 0 {
+				fmt.Println(token)
+				token = ""
+			}
+			quoteFlag = (quoteFlag + 1) % 2
+			token += string(char)
+			continue
+		}
+		if quoteFlag == 1 {
+			token += string(char)
+			continue
 		}
 		if getClass(int(char)) == 0 || commentFlag == 1{
 			continue
@@ -64,3 +77,23 @@ func main() {
 	fmt.Println(token)
 }
 
+func main() {
+	/*
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter text: ")
+	text, _ := reader.ReadString('\n')
+	parse(text) */
+	f, err := ioutil.ReadFile("test.qu") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+	file := string(f)
+	parse(file)
+}
+
+
+
+
+
+
+	
