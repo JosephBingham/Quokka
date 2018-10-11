@@ -6,6 +6,10 @@ import ("fmt"
 	"io/ioutil"
 )
 
+type Token struct {
+	token, class interface{}
+}
+
 func getClass(char int ) int {
 		if char == 0 {
 			return -1 //EOF, stop running
@@ -36,12 +40,12 @@ func getClass(char int ) int {
 		} else {
 			fmt.Println(string(char))
 			panic("this is not something I know, yet")
-		}
-		
+		}		
 }
 
 
 func parse(text string) {
+	var parsed []Token
 	class := 0
 	token := ""
 	commentFlag := 0
@@ -53,7 +57,8 @@ func parse(text string) {
 		}
 		if getClass(int(char)) == 10 {
 			if quoteFlag == 0 {
-				fmt.Println(token)
+//				fmt.Println(token)
+				parsed = append(parsed, Token{token ,10})
 				token = ""
 			}
 			quoteFlag = (quoteFlag + 1) % 2
@@ -67,14 +72,17 @@ func parse(text string) {
 		if getClass(int(char)) == 0 || commentFlag == 1{
 			continue
 		} else if getClass(int(char)) != class {
-			fmt.Println(token)
+			parsed = append(parsed, Token{token,class})
+//			fmt.Println(token)
 			token = string(char)
 			class = getClass(int(char))
 		} else {
 			token += string(char)
 		}
 	}
-	fmt.Println(token)
+	parsed = append(parsed, Token{token, class})
+//	fmt.Println(token)
+	fmt.Println(parsed)
 }
 
 func main() {

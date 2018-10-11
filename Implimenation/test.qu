@@ -6,3 +6,8 @@ FOR i IN 1:100;
         PRINT i;
     END;
 END;
+
+
+CHARS h = "Hello";
+
+h.1;
