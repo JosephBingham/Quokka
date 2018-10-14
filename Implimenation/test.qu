@@ -10,4 +10,7 @@ END;
 
 CHARS h = "Hello";
 
-h.1;
+h'1 = "h";
+
+
+h@"hello";

@@ -1,7 +1,7 @@
 package main
 
 import ("fmt"
-//	"os"
+	"os"
 //	"bufio"
 	"io/ioutil"
 )
@@ -57,7 +57,6 @@ func parse(text string) {
 		}
 		if getClass(int(char)) == 10 {
 			if quoteFlag == 0 {
-//				fmt.Println(token)
 				parsed = append(parsed, Token{token ,10})
 				token = ""
 			}
@@ -73,7 +72,6 @@ func parse(text string) {
 			continue
 		} else if getClass(int(char)) != class {
 			parsed = append(parsed, Token{token,class})
-//			fmt.Println(token)
 			token = string(char)
 			class = getClass(int(char))
 		} else {
@@ -81,17 +79,17 @@ func parse(text string) {
 		}
 	}
 	parsed = append(parsed, Token{token, class})
-//	fmt.Println(token)
 	fmt.Println(parsed)
 }
 
 func main() {
-	/*
-	reader := bufio.NewReader(os.Stdin)
+
+/*	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter text: ")
 	text, _ := reader.ReadString('\n')
 	parse(text) */
-	f, err := ioutil.ReadFile("test.qu") // just pass the file name
+	fmt.Println(os.Args[0])
+	f, err := ioutil.ReadFile(os.Args[1])//"test.qu") // just pass the file name
 	if err != nil {
 		fmt.Print(err)
 	}
