@@ -34,7 +34,9 @@ func getClass(char int ) int {
 		} else if char >= 42 && char <= 47 || char == 37{
 			return 9 //Math operators
 		} else if char == 34 {
-			return 10 //Quote			
+			return 10 //Quote
+		} else if char == 64 {
+			return 11 //At sign, access opperator			
 		} else if char == 126 {
 			return -2
 		} else {
@@ -43,8 +45,7 @@ func getClass(char int ) int {
 		}		
 }
 
-
-func parse(text string) {
+func parse(text string) []Token{
 	var parsed []Token
 	class := 0
 	token := ""
@@ -80,7 +81,14 @@ func parse(text string) {
 	}
 	parsed = append(parsed, Token{token, class})
 	fmt.Println(parsed)
+	return parsed
 }
+
+func buildAST(tokens []Token) {
+	
+	return
+}
+
 
 func main() {
 
@@ -94,7 +102,8 @@ func main() {
 		fmt.Print(err)
 	}
 	file := string(f)
-	parse(file)
+	parsed := parse(file)
+	buildAST(parsed)
 }
 
 
